@@ -1,0 +1,54 @@
+2 Services: Posts, Comments
+Example: 
+Posts: {
+  () => createPost();
+  () => listAllPosts();
+}
+
+Dependency: from Comments to Posts
+
+Structure: React App -> Router -> 'posts-service' || 'comments-service'
+
+Post Service:
+Router: [
+  {
+    path: /posts
+    method: POST
+    body?: { title: string }
+    goal: Create new post
+  },
+  {
+    path: /posts
+    method: GET
+    goal: Retrieve all posts
+  }
+]
+
+Comments Service:
+Router: [
+  {
+    path: /posts/:id/comments
+    method: POST
+    body?: { content: string }
+    goal: Create a comment associated with given post ID
+  },
+  {
+    path: /posts/:id/comments
+    method: GET
+    goal: Retrieve all comments associated with the given post iD
+  }
+]
+
+commentsByPostId:
+ID of the a post 'ahuhf5fbday3hd': {
+  array of comments: {
+    {
+      id: 'j3d415d4'
+      content: 'Great post!'
+    },
+    {
+      id: 'd42dg63s1'
+      content: 'Heat!'
+    }
+  }
+}
